@@ -5,16 +5,17 @@ import ClientCategoryPage from '../../components/ClientCategoryPage';
 export async function generateStaticParams() {
     const categories = getAllCategories();
     return categories.map((category) => ({
-        category: category,
+        category: encodeURIComponent(category),
     }));
 }
 
 export default async function CategoryPage({ params }: { params: { category: string } }) {
-    const categoryPosts = await getCategoryPosts(params.category);
+    const decodedCategory = decodeURIComponent(params.category);
+    const categoryPosts = await getCategoryPosts(decodedCategory);
 
     return (
         <Suspense fallback={<div>카테고리 데이터를 로딩 중...</div>}>
-            <ClientCategoryPage categoryPosts={categoryPosts} category={params.category} />
+            <ClientCategoryPage categoryPosts={categoryPosts} category={decodedCategory} />
         </Suspense>
     );
 }

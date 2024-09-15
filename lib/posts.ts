@@ -66,7 +66,7 @@ export function getAllCategories() {
     const postCategories = matterResult.data.categories as string[];
 
     if (postCategories) {
-      postCategories.forEach((category) => categories.add(encodeURIComponent(category)));
+      postCategories.forEach((category) => categories.add(category));
     }
   });
 
@@ -74,8 +74,7 @@ export function getAllCategories() {
 }
 
 // 새로운 함수 추가
-export async function getCategoryPosts(encodedCategory: string): Promise<Post[]> {
-  const decodedCategory = decodeURIComponent(encodedCategory);
+export async function getCategoryPosts(category: string): Promise<Post[]> {
   const allPostsData = await getSortedPostsData();
-  return allPostsData.filter((post) => post.categories.includes(decodedCategory));
+  return allPostsData.filter((post) => post.categories.includes(category));
 }
