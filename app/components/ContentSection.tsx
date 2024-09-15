@@ -10,8 +10,8 @@ export default function ContentSection({ content, categories }: { content: Post[
                 <ul className="mb-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {categories.map((category) => (
                         <li key={category} className="mb-2">
-                            <Link href={`/category/${encodeURIComponent(category)}`} className="text-blue-500 hover:underline block p-4 bg-gray-100 dark:bg-gray-800 rounded-lg transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700">
-                                {category}
+                            <Link href={`/category/${category.replace(/ /g, '_')}`} className="text-blue-500 hover:underline block p-4 bg-gray-100 dark:bg-gray-800 rounded-lg transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                {category.replace(/_/g, ' ')}
                             </Link>
                         </li>
                     ))}

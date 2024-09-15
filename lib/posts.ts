@@ -66,7 +66,7 @@ export function getAllCategories() {
     const postCategories = matterResult.data.categories as string[];
 
     if (postCategories) {
-      postCategories.forEach((category) => categories.add(category));
+      postCategories.forEach((category) => categories.add(category.replace(/ /g, '_')));
     }
   });
 
@@ -76,5 +76,6 @@ export function getAllCategories() {
 // 새로운 함수 추가
 export async function getCategoryPosts(category: string): Promise<Post[]> {
   const allPostsData = await getSortedPostsData();
-  return allPostsData.filter((post) => post.categories.includes(category));
+  const decodedCategory = category.replace(/_/g, ' ');
+  return allPostsData.filter((post) => post.categories.includes(decodedCategory));
 }
