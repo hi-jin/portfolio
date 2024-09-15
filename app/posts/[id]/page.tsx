@@ -14,7 +14,10 @@ export default async function Post({ params }: { params: { id: string } }) {
     <div className="min-h-screen p-8">
       <h1 className="text-3xl font-bold mb-4">{postData.title}</h1>
       <div className="text-gray-500 mb-8">{postData.date}</div>
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} className="prose" />
+      <div 
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml }} 
+        className="markdown-content"
+      />
     </div>
   );
 }
