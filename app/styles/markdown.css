@@ -63,9 +63,9 @@
   @apply border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-4 bg-gray-50 dark:bg-gray-800 py-2 rounded-r;
 }
 
-/* 수평선 스타일 */
+/* 수평선 스타일 제거 (JavaScript에서 처리할 예정) */
 .markdown-content hr {
-  @apply border-t border-gray-300 dark:border-gray-600 my-8;
+  display: none;
 }
 
 /* 테이블 스타일 */
@@ -84,4 +84,36 @@
 /* 이미지 스타일 */
 .markdown-content img {
   @apply max-w-full h-auto rounded-md my-4;
+}
+
+/* 섹션 구분선 스타일 */
+.markdown-content hr {
+  @apply border-t border-gray-300 dark:border-gray-600 my-8;
+}
+
+/* 번갈아가는 섹션 색상 */
+.markdown-content > :nth-child(odd) {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+.markdown-content > :nth-child(even) {
+  @apply bg-white dark:bg-gray-900;
+}
+
+/* 섹션 패딩 */
+.markdown-content > * {
+  @apply p-0;
+}
+
+/* 섹션 스타일 */
+.markdown-content .section {
+  @apply w-full;
+}
+
+.markdown-content .section-even {
+  @apply bg-white dark:bg-gray-900;
+}
+
+.markdown-content .section-odd {
+  @apply bg-gray-100 dark:bg-gray-800;
 }
