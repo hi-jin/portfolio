@@ -1,10 +1,9 @@
-import { getSortedPostsData, getAllCategories } from '../lib/posts';
+import { getSortedPostsData } from '../lib/posts';
 import IntroSection from './components/IntroSection';
 import ContentSection from './components/ContentSection';
 
 export default async function Home() {
   const allPostsData = await getSortedPostsData();
-  const categories = await getAllCategories();
 
   return (
     <>
