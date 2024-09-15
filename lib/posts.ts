@@ -9,27 +9,31 @@ const postsDirectory = path.join(process.cwd(), 'posts');
 const DEFAULT_THUMBNAIL = 'https://via.placeholder.com/300x300.png?text=No+Image';
 
 export async function getSortedPostsData() {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, '');
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const matterResult = matter(fileContents);
+  // 서버 사이드에서만 실행되도록 체크
+  if (typeof window === 'undefined') {
+    const fileNames = fs.readdirSync(postsDirectory);
+    const allPostsData = fileNames.map((fileName) => {
+      const id = fileName.replace(/\.md$/, '');
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const matterResult = matter(fileContents);
 
-    return {
-      id,
-      ...(matterResult.data as { date: string; title: string; categories: string[]; thumbnail: string }),
-      thumbnail: matterResult.data.thumbnail || DEFAULT_THUMBNAIL,
-    };
-  });
+      return {
+        id,
+        ...(matterResult.data as { date: string; title: string; categories: string[]; thumbnail: string }),
+        thumbnail: matterResult.data.thumbnail || DEFAULT_THUMBNAIL,
+      };
+    });
 
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+    return allPostsData.sort((a, b) => {
+      if (a.date < b.date) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  }
+  return []; // 클라이언트 사이드에서는 빈 배열 반환
 }
 
 export async function getPostData(id: string) {
