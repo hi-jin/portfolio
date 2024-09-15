@@ -11,7 +11,10 @@ export default async function Home() {
       <IntroSection />
       <div className="relative z-10">
         <div className="h-screen"></div> {/* 빈 공간을 만들어 IntroSection과 겹치게 함 */}
-        <ContentSection categories={categories} allPostsData={allPostsData} />
+        <ContentSection content={allPostsData.map(post => ({
+          ...post,
+          category: post.categories[0] || ''
+        }))} />
       </div>
     </>
   );
