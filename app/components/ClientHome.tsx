@@ -1,46 +1,44 @@
 'use client'
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
 import IntroSection from './IntroSection';
 import ContentSection from './ContentSection';
 import SearchResults from './SearchResults';
-import AppBar from './AppBar';
+import { useSearchParams } from 'next/navigation';
+import { Post } from '../types/post';
 
-type Post = {
-  thumbnail: any;
-  date: string;
-  title: string;
-  categories: string[];
-  id: string;
-};
+function SearchParamsHandler({ allPostsData, setShowIntro }: { allPostsData: Post[], setShowIntro: (show: boolean) => void }) {
+    const searchParams = useSearchParams();
+    const q = searchParams.get('q') || '';
+
+    useEffect(() => {
+        setShowIntro(!q);
+    }, [q, setShowIntro]);
+
+    return q ? <SearchResults allPosts={allPostsData} q={q} /> : null;
+}
 
 export default function ClientHome({ allPostsData }: { allPostsData: Post[] }) {
-  const [showIntro, setShowIntro] = useState(true);
-  const searchParams = useSearchParams();
+    const [showIntro, setShowIntro] = useState(true);
 
-  useEffect(() => {
-    setShowIntro(!searchParams.get('q'));
-  }, [searchParams]);
-
-  return (
-    <>
-      <AppBar />
-      <div className="pt-16"> {/* AppBar의 높이만큼 상단 여백 추가 */}
-        {showIntro && <IntroSection />}
-        <div className="relative z-10">
-          {!showIntro && <SearchResults allPosts={allPostsData} q={searchParams.get('q') || ''} />}
-          {showIntro && (
-            <>
-              <div className="h-screen"></div>
-              <ContentSection content={allPostsData.map(post => ({
-                ...post,
-                category: post.categories[0] || ''
-              }))} />
-            </>
-          )}
-        </div>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="pt-16">
+                <Suspense fallback={<div>검색 파라미터 로딩 중...</div>}>
+                    {showIntro && <IntroSection />}
+                    <div className="relative z-10">
+                        <SearchParamsHandler allPostsData={allPostsData} setShowIntro={setShowIntro} />
+                        {showIntro && (
+                            <>
+                                <div className="h-screen"></div>
+                                <ContentSection content={allPostsData.map(post => ({
+                                    ...post,
+                                }))} categories={Array.from(new Set(allPostsData.map(post => post.categories).flat()))} />
+                            </>
+                        )}
+                    </div>
+                </Suspense>
+            </div>
+        </>
+    );
 }

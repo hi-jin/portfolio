@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import SearchBar from './SearchBar';
 import ThemeToggle from './ThemeToggle';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function AppBar() {
+function AppBarContent() {
     const [isVisible, setIsVisible] = useState(false);
     const searchParams = useSearchParams();
     const pathname = usePathname();
@@ -25,7 +25,7 @@ export default function AppBar() {
         window.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [searchParams]);
+    }, [searchParams, pathname]);
 
     return (
         <>
@@ -39,5 +39,13 @@ export default function AppBar() {
             </div>
             <ThemeToggle />
         </>
+    );
+}
+
+export default function AppBar() {
+    return (
+        <Suspense fallback={<div>로딩 중...</div>}>
+            <AppBarContent />
+        </Suspense>
     );
 }

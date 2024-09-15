@@ -3,12 +3,13 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import { Post } from '@/app/types/post';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
 const DEFAULT_THUMBNAIL = 'https://via.placeholder.com/300x300.png?text=No+Image';
 
-export async function getSortedPostsData() {
+export async function getSortedPostsData(): Promise<Post[]> {
   // 서버 사이드에서만 실행되도록 체크
   if (typeof window === 'undefined') {
     const fileNames = fs.readdirSync(postsDirectory);
@@ -20,8 +21,9 @@ export async function getSortedPostsData() {
 
       return {
         id,
-        ...(matterResult.data as { date: string; title: string; categories: string[]; thumbnail: string }),
+        ...(matterResult.data as { date: string; title: string; categories: string[]; thumbnail: string; category: string }),
         thumbnail: matterResult.data.thumbnail || DEFAULT_THUMBNAIL,
+        category: matterResult.data.categories[0] || '',
       };
     });
 
@@ -72,7 +74,7 @@ export function getAllCategories() {
 }
 
 // 새로운 함수 추가
-export async function getCategoryPosts(encodedCategory: string) {
+export async function getCategoryPosts(encodedCategory: string): Promise<Post[]> {
   const decodedCategory = decodeURIComponent(encodedCategory);
   const allPostsData = await getSortedPostsData();
   return allPostsData.filter((post) => post.categories.includes(decodedCategory));

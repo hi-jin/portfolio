@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function SearchBar() {
+function SearchBarContent() {
     const [searchTerm, setSearchTerm] = useState('');
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -42,5 +42,13 @@ export default function SearchBar() {
                 🔍
             </button>
         </form>
+    );
+}
+
+export default function SearchBar() {
+    return (
+        <Suspense fallback={<div>검색창 로딩 중...</div>}>
+            <SearchBarContent />
+        </Suspense>
     );
 }

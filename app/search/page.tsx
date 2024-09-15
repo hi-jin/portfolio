@@ -1,12 +1,5 @@
-import { getSortedPostsData } from '../../lib/posts';
-import ClientSearchPage from '../components/ClientSearchPage';
+import ClientSearchWrapper from '../components/ClientSearchWrapper';
 
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams: { q: string };
-}) {
-  const allPosts = await getSortedPostsData();
-
-  return <ClientSearchPage allPosts={allPosts} searchParams={searchParams} />;
+export default function SearchPage() {
+  return <ClientSearchWrapper />;
 }
