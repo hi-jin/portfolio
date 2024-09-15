@@ -6,7 +6,9 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export function getSortedPostsData() {
+const DEFAULT_THUMBNAIL = 'https://via.placeholder.com/300x300.png?text=No+Image';
+
+export async function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, '');
@@ -16,7 +18,8 @@ export function getSortedPostsData() {
 
     return {
       id,
-      ...(matterResult.data as { date: string; title: string }),
+      ...(matterResult.data as { date: string; title: string; categories: string[]; thumbnail: string }),
+      thumbnail: matterResult.data.thumbnail || DEFAULT_THUMBNAIL,
     };
   });
 
@@ -41,6 +44,32 @@ export async function getPostData(id: string) {
   return {
     id,
     contentHtml,
-    ...(matterResult.data as { date: string; title: string }),
+    ...(matterResult.data as { date: string; title: string; categories: string[] }),
   };
+}
+
+// 새로운 함수 추가
+export function getAllCategories() {
+  const fileNames = fs.readdirSync(postsDirectory);
+  const categories = new Set<string>();
+
+  fileNames.forEach((fileName) => {
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+    const postCategories = matterResult.data.categories as string[];
+
+    if (postCategories) {
+      postCategories.forEach((category) => categories.add(encodeURIComponent(category)));
+    }
+  });
+
+  return Array.from(categories);
+}
+
+// 새로운 함수 추가
+export async function getCategoryPosts(encodedCategory: string) {
+  const decodedCategory = decodeURIComponent(encodedCategory);
+  const allPostsData = await getSortedPostsData();
+  return allPostsData.filter((post) => post.categories.includes(decodedCategory));
 }

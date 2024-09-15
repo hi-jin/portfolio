@@ -1,7 +1,7 @@
 import { getPostData, getSortedPostsData } from '../../../lib/posts';
 
 export async function generateStaticParams() {
-  const posts = getSortedPostsData();
+  const posts = await getSortedPostsData();
   return posts.map((post) => ({
     id: post.id,
   }));

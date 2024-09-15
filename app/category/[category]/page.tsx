@@ -1,29 +1,23 @@
 import Link from 'next/link';
-import { getSortedPostsData, getAllCategories } from '../lib/posts';
+import { getAllCategories, getCategoryPosts } from '../../../lib/posts';
 import Image from 'next/image';
 
-export default async function Home() {
-  const allPostsData = await getSortedPostsData();
-  const categories = await getAllCategories();
+export async function generateStaticParams() {
+  const categories = getAllCategories();
+  return categories.map((category) => ({
+    category: category,
+  }));
+}
+
+export default async function Category({ params }: { params: { category: string } }) {
+  const decodedCategory = decodeURIComponent(params.category);
+  const categoryPosts = await getCategoryPosts(params.category);
 
   return (
     <div className="min-h-screen p-8">
-      <h1 className="text-3xl font-bold mb-8">내 포트폴리오 블로그</h1>
-      
-      <h2 className="text-2xl font-semibold mb-4">카테고리</h2>
-      <ul className="mb-8">
-        {categories.map((category) => (
-          <li key={category} className="mb-2">
-            <Link href={`/category/${category}`} className="text-blue-500 hover:underline">
-              {decodeURIComponent(category)}
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      <h2 className="text-2xl font-semibold mb-4">최근 게시물</h2>
+      <h1 className="text-3xl font-bold mb-8">{decodedCategory} 카테고리의 포스트</h1>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {allPostsData.map(({ id, date, title, thumbnail }) => (
+        {categoryPosts.map(({ id, date, title, thumbnail }) => (
           <li key={id} className="border rounded-lg overflow-hidden shadow-md">
             <Link href={`/posts/${id}`}>
               <div className="relative w-full h-48">
@@ -42,6 +36,11 @@ export default async function Home() {
           </li>
         ))}
       </ul>
+      <div className="mt-8">
+        <Link href="/" className="text-blue-500 hover:underline">
+          홈으로 돌아가기
+        </Link>
+      </div>
     </div>
   );
 }
