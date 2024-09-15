@@ -1,47 +1,18 @@
-import Link from 'next/link';
 import { getSortedPostsData, getAllCategories } from '../lib/posts';
-import Image from 'next/image';
+import IntroSection from './components/IntroSection';
+import ContentSection from './components/ContentSection';
 
 export default async function Home() {
   const allPostsData = await getSortedPostsData();
   const categories = await getAllCategories();
 
   return (
-    <div className="min-h-screen p-8">
-      <h1 className="text-3xl font-bold mb-8">내 포트폴리오 블로그</h1>
-      
-      <h2 className="text-2xl font-semibold mb-4">카테고리</h2>
-      <ul className="mb-8">
-        {categories.map((category) => (
-          <li key={category} className="mb-2">
-            <Link href={`/category/${category}`} className="text-blue-500 hover:underline">
-              {decodeURIComponent(category)}
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      <h2 className="text-2xl font-semibold mb-4">최근 게시물</h2>
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {allPostsData.map(({ id, date, title, thumbnail }) => (
-          <li key={id} className="border rounded-lg overflow-hidden shadow-md">
-            <Link href={`/posts/${id}`}>
-              <div className="relative w-full h-48">
-                <Image
-                  src={thumbnail}
-                  alt={title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                <p className="text-gray-500">{date}</p>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <IntroSection />
+      <div className="relative z-10">
+        <div className="h-screen"></div> {/* 빈 공간을 만들어 IntroSection과 겹치게 함 */}
+        <ContentSection categories={categories} allPostsData={allPostsData} />
+      </div>
+    </>
   );
 }

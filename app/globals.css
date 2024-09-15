@@ -25,3 +25,7 @@ body {
 }
 
 @import './styles/markdown.css';
+
+html {
+  scroll-behavior: smooth;
+}
