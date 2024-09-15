@@ -26,10 +26,10 @@ export default function ClientHome({ allPostsData }: { allPostsData: Post[] }) {
   return (
     <>
       <AppBar />
-      <div className="pt-16"> {/* Add padding top to account for the AppBar */}
+      <div className="pt-16"> {/* AppBar의 높이만큼 상단 여백 추가 */}
         {showIntro && <IntroSection />}
         <div className="relative z-10">
-          {!showIntro && <SearchResults allPosts={allPostsData} />}
+          {!showIntro && <SearchResults allPosts={allPostsData} q={searchParams.get('q') || ''} />}
           {showIntro && (
             <>
               <div className="h-screen"></div>

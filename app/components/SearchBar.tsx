@@ -20,6 +20,8 @@ export default function SearchBar() {
         e.preventDefault();
         if (searchTerm.trim()) {
             router.push(`/?q=${encodeURIComponent(searchTerm.trim())}`);
+        } else {
+            router.push('/'); // 빈 문자열 검색 시 홈으로 이동
         }
     };
 

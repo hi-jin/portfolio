@@ -13,10 +13,15 @@ interface Post {
     categories: string[];
 }
 
-export default function SearchResults({ allPosts }: { allPosts: Post[] }) {
+interface SearchResultsProps {
+    allPosts: Post[];
+    q: string;
+}
+
+export default function SearchResults({ allPosts, q }: SearchResultsProps) {
     const searchParams = useSearchParams();
-    const searchTerm = searchParams.get('q') || '';
     const [searchResults, setSearchResults] = useState<Post[]>([]);
+    const searchTerm = q || searchParams.get('q') || '';
 
     useEffect(() => {
         const results = allPosts.filter((post) =>
