@@ -4,7 +4,6 @@
     "label": "Undergraduate Student",
     "image": "",
     "email": "hyungjin.ahn51@gmail.com",
-    "phone": "(912) 123-4567",
     "url": "https://hi-jin.github.io/portfolio/",
     "summary": "Undergraduate student majoring in Computer Science who is interested in Deep Learning and Application development.",
     "location": {
@@ -65,7 +64,7 @@
   "education": [
     {
       "institution": "Chungnam National University",
-      "location": "Daejeon, Republic of Korea",
+      "location": "Republic of Korea",
       "url": "https://www.cnu.ac.kr/",
       "area": "Computer Convergence",
       "studyType": "B.S.",
@@ -92,7 +91,7 @@
     },
     {
       "title": "National Scholarship (Science and Engineering)",
-      "date": "2023",
+      "date": "2023~2024",
       "awarder": "Ministry of Science and ICT",
       "url": "https://www.msit.go.kr/",
       "summary": "Full scholarship"
