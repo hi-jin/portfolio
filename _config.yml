@@ -267,8 +267,8 @@ display_categories: ["external-services"] # these categories will be displayed o
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Ahn, 안형진]
-  first_name: [Hyungjin, H.]
+  last_name: [Ahn, 안]
+  first_name: [Hyungjin, H., 형진]
 
   style: apa
   locale: en
