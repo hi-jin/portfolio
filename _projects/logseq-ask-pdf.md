@@ -26,6 +26,11 @@ A Logseq plugin that allows you to ask questions about PDF highlights (text or i
 - Seamless integration with Logseq's UI
 - Compatible with OpenAI API and local models that are OpenAI API-compatible
 
+### Technical Details
+
+- Typescript
+- Langchain
+
 ### Links
 
 - [Logseq Ask PDF on GitHub](https://github.com/hi-jin/logseq-ask-pdf)
