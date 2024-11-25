@@ -29,5 +29,3 @@ A Logseq plugin that allows you to ask questions about PDF highlights (text or i
 ### Links
 
 - [Logseq Ask PDF on GitHub](https://github.com/hi-jin/logseq-ask-pdf)
-
-{% endraw %}
