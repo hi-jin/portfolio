@@ -2,7 +2,7 @@
 layout: page
 title: Pastelize (WIP)
 description: RAG-based 2nd Brain Application
-img: assets/projects/pastelize/pastelize.png
+img: assets/projects/pastelize/pastelize.webp
 importance: 1
 category: work
 ---
@@ -14,7 +14,7 @@ All mindmaps are stored in a `local Vector Database` and are queried automatical
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/projects/pastelize/pastelize.png" title="pastelize vector search" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/projects/pastelize/pastelize.webp" title="pastelize vector search" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -29,7 +29,7 @@ All uploaded PDF files are processed by `local Embedding Model` and stored in a 
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/projects/pastelize/pdf-viewer.png" title="pastelize pdf viewer" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/projects/pastelize/pdf-viewer.webp" title="pastelize pdf viewer" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">

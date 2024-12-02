@@ -2,7 +2,7 @@
 layout: page
 title: Upciety
 description: A plastic circular economy platform for collecting plastic resources used in upcycling
-img: assets/projects/upciety/upciety.png
+img: assets/projects/upciety/upciety.webp
 redirect: https://www.4thplace.io/22
 importance: 1
 category: work

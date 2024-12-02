@@ -2,7 +2,7 @@
 layout: page
 title: Logseq Ask PDF
 description: A Logseq plugin that allows you to ask questions about PDF highlights (text or images) using Large Language Models (LLMs).
-img: assets/projects/logseq-ask-pdf/logseq-ask-pdf.gif
+img: assets/projects/logseq-ask-pdf/logseq-ask-pdf.webp
 importance: 3
 category: fun
 ---
@@ -11,7 +11,7 @@ A Logseq plugin that allows you to ask questions about PDF highlights (text or i
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/projects/logseq-ask-pdf/logseq-ask-pdf.gif" title="Logseq ask pdf Demo" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/projects/logseq-ask-pdf/logseq-ask-pdf.webp" title="Logseq ask pdf Demo" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">

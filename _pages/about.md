@@ -6,7 +6,7 @@ subtitle: <a href='#'>Chungnam National University</a>. Daejeon, Republic of Kor
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: prof_pic.webp
   image_circular: false # crops the image to make it circular
   more_info: # more information
 
