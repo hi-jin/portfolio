@@ -21,6 +21,9 @@ All mindmaps are stored in a `local Vector Database` and are queried automatical
     The part on the right side of the photo shows the results of searching for similar contexts from all vectors stored based on the current work content.
 </div>
 
+<br>
+<br>
+
 ### PDF Viewer
 
 Users can upload PDF files and view them in the application.
@@ -36,6 +39,9 @@ All uploaded PDF files are processed by `local Embedding Model` and stored in a 
     When a PDF fragment is found through similarity search, users can easily navigate to the corresponding location to see the original content.
 </div>
 
+<br>
+<br>
+
 ### Technical Details
 
 - Langchain
@@ -44,6 +50,9 @@ All uploaded PDF files are processed by `local Embedding Model` and stored in a 
 - React
 - Electron
 - Tailwind CSS
+
+<br>
+<br>
 
 ### Technical Challenges
 
