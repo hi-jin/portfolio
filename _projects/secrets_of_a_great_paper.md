@@ -41,7 +41,7 @@ Major rejection reasons (essential principles) are:
     </div>
 </div>
 
-1. `Crawl rejected papers from Google.`
+1. `Crawl rejected papers from Google`
 
     Using specific keywords, we can crawl only `rejected` papers from `openreview.net`.
 
