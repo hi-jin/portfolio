@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Chungnam National University</a>. Daejeon, Republic of Korea
+subtitle: <a href='https://computer.cnu.ac.kr/'>Chungnam National University</a>. Daejeon, Republic of Korea
 
 profile:
   align: right
