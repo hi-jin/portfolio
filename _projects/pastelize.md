@@ -5,6 +5,8 @@ description: RAG-based 2nd Brain Application
 img: assets/projects/pastelize/pastelize.webp
 importance: 1
 category: work
+selected: true
+role: Project Manager, Full Stack Developer
 ---
 
 ### TL;DR
