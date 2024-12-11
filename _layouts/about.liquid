@@ -46,14 +46,16 @@ layout: default
         <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
       </h2>
       {% include news.liquid limit=true %}
+      <br>
     {% endif %}
 
-    <!-- Latest posts -->
-    {% if site.latest_posts.enabled %}
+    <!-- Selected projects -->
+    {% if page.projects %}
       <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+        <a href="{{ '/projects/' | relative_url }}" style="color: inherit">selected projects</a>
       </h2>
-      {% include latest_posts.liquid %}
+      {% include selected_projects.liquid %}
+      <br>
     {% endif %}
 
     <!-- Selected papers -->

@@ -1,0 +1,42 @@
+<div class="projects">
+  {% if site.projects != blank %}
+    <div>
+      {% assign selected_projects = site.projects | where: "selected", true | sort: "importance" %}
+      {% for item in selected_projects %}
+        <div class="row mb-3">
+          <div class="col col-sm-2 abbr">
+            {% if item.img %}
+              {%
+                include figure.liquid
+                loading="eager"
+                path=item.img
+                alt="project thumbnail"
+                class="preview z-depth-1 rounded"
+                zoomable=true
+                max-height="200px"
+                object-fit="contain"
+              %}
+            {% endif %}
+          </div>
+          <a
+            href="{% if item.redirect %}{{ item.redirect }}{% else %}{{ item.url | relative_url }}{% endif %}"
+            class="col-sm-8"
+          >
+            <div>
+              <div class="title"><b>{{ item.title }}</b></div>
+              <div class="description mb-1">{{ item.description }}</div>
+              {% if item.affiliation %}
+                <div class="affiliation"><small><i>@{{ item.affiliation }}</i></small></div>
+              {% endif %}
+              {% if item.role %}
+                <div class="role"><small><i>{{ item.role }}</i></small></div>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No projects so far...</p>
+  {% endif %}
+</div>

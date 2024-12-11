@@ -6,6 +6,9 @@ img: assets/projects/upciety/upciety.webp
 redirect: https://www.4thplace.io/22
 importance: 1
 category: work
+selected: true
+role: Mobile Developer
+affiliation: 4th place ((주) 제4의공간)
 ---
 
 Every project has a beautiful feature showcase page.

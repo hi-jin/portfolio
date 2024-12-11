@@ -5,6 +5,8 @@ description: Analyzing rejection patterns in academic papers to uncover key insi
 img: assets/projects/secrets_of_a_great_paper/reject_patterns.webp
 importance: 1
 category: fun
+selected: true
+affiliation: ISoft Lab at Chungnam National University
 ---
 
 > This is a simple analysis driven by personal curiosity about "`why papers get rejected`" rather than a rigorously validated research experiment.
